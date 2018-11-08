@@ -8,6 +8,9 @@ import mine from '../components/mine.vue'
 import movies from '../components/movies.vue'
 import outCard from '../components/outCard.vue'
 
+import register from '@/components/register.vue'
+import login from '@/components/login.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -37,6 +40,14 @@ export default new Router({
     {
       path:'/outCard',
       component:outCard
+    },
+    {
+      path: '/register',
+      component:register
+    },
+    {
+      path: '/login',
+      component:login
     }
   ]
 })
