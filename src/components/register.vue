@@ -23,8 +23,8 @@
           <p v-if="isNickname">昵称只能3-8个</p>
         </div>
         <button class="submit" @click="addUser">注册</button>
-        <!-- <a href="javascript:;" @click="addUser">提交</a> -->
       </form>
+      <router-link to="/login" class="toLogin">已有账号，直接登录</router-link>
     </section>
   </div>
 </template>
@@ -182,5 +182,13 @@ header h1 {
   border: 0;
   outline: none;
   border-radius: 0.36rem;
+}
+.toLogin {
+  display: block;
+  width: 1.5rem;
+  color: blue;
+  margin: 0 auto;
+  text-decoration: none;
+  text-align: center;
 }
 </style>
