@@ -42,8 +42,8 @@ methods:{
       axiox.get(api_proxy+'https://m.maizuo.com/v4/api/city?__t=1541556779061')
       .then(result=>{
         var res=result.data.data.cities;
-        console.log(res);
-        console.log(res[0].pinyin.charAt(0));
+        // console.log(res);
+        // console.log(res[0].pinyin.charAt(0));
         for(var i=0;i<this.words.length;i++){//字母
           for(var j=0;j<res.length;j++){//data数据
             if(this.words[i]==res[j].pinyin.charAt(0)){//字母匹配
