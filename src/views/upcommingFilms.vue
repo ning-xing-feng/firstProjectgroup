@@ -3,7 +3,7 @@
     <ul class="nowFilms">
       <li v-for="(item,index) in nowFilms"
         :key="index">
-        <router-link :to="'detailFilms/' + item.id">
+        <router-link :to="'detailFilms/' + item.id" tag="div">
           <img :src="item.cover.origin" alt="">
           <div class="nowBottom">
             <div class="filmsLeft">

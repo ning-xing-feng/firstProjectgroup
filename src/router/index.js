@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 
 import index from '../components/index.vue'
 import films from '../components/films.vue'
@@ -10,10 +9,7 @@ import FilmSoon from '../components/film-soon.vue'
 import movies from '../components/movies.vue'
 import outCard from '../components/outCard.vue'
 import city from '@/components/city.vue'
-
-// 自己添加
 import detailFilms from '@/views/detailFilms.vue'
-
 import register from '@/components/register.vue'
 import login from '@/components/login.vue'
 
@@ -23,12 +19,9 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-      // components:{
-      //   city:city
-      // }
+      path: '',
+      name: 'index',
+      component: index
     },
     {
       path:'/index',
@@ -53,33 +46,32 @@ export default new Router({
           component:FilmSoon
         },
         {
-          path:'detailFilms/ :id',
-          name:'detailFilms',
-          component:detailFilms
-        },
-        {
           path:'',
+          name:'FilmNow',
           component:FilmNow
         }
       ]
     },
     {
       path:'/mine',
+      name: 'mine',
       component:mine
     },
     {
       path:'/movies',
+      name: 'movies',
       component:movies
     },
     {
       path:'/outCard',
+      name: 'outCard',
       component:outCard
     },
     {
       path:'/city',
+      name:'city',
       component:city
     },
-    // 改动
     {
       path:'/detailFilms/:id',
       name: 'detailFilms',
@@ -87,11 +79,13 @@ export default new Router({
     },
     {
       path: '/register',
+      name: 'register',
       component:register
     },
     {
       path: '/login',
-      component:login
+      name: 'login',
+      component: login
     }
   ]
 })
