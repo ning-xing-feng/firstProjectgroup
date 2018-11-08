@@ -12,6 +12,9 @@ import city from '@/components/city.vue'
 // 自己添加
 import detailFilms from '@/views/detailFilms.vue'
 
+import register from '@/components/register.vue'
+import login from '@/components/login.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -46,6 +49,7 @@ export default new Router({
       component:outCard
     },
     {
+<<<<<<< HEAD
       path:'/city',
       component:city
 
@@ -55,6 +59,14 @@ export default new Router({
       path:'/detailFilms/:id',
       name: 'detailFilms',
       component: detailFilms
+=======
+      path: '/register',
+      component:register
+    },
+    {
+      path: '/login',
+      component:login
+>>>>>>> wzw
     }
   ]
 })

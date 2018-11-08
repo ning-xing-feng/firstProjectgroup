@@ -1,6 +1,7 @@
 <template>
   <div id="app">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- <Mine></Mine> -->
     <!-- <out-card></out-card> -->
 
@@ -28,6 +29,8 @@
       </div>
     </transition>
 >>>>>>> lhx
+=======
+>>>>>>> wzw
     <router-view/>
   </div>
 </template>
@@ -45,6 +48,7 @@ export default {
 }
 </script>
 <style>
+<<<<<<< HEAD
 @import '../static/css/layout.css';
 @import '../static/css/font/iconfont.css';
 =======
@@ -173,6 +177,11 @@ export default {
   justify-content: space-between;
 }
 >>>>>>> lhx
+=======
+</style>
+<style>
+@import '../static/css/reset.css';
+>>>>>>> wzw
 </style>
 
 <style scoped>
