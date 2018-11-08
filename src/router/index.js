@@ -46,7 +46,7 @@ export default new Router({
     // 改动
     {
       path:'/detailFilms/:id',
-      name: detailFilms,
+      name: 'detailFilms',
       component: detailFilms
     }
   ]

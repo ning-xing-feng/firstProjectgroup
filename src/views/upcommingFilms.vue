@@ -3,13 +3,13 @@
     <ul class="nowFilms">
       <li v-for="(item,index) in nowFilms"
         :key="index">
-        <router-link to="/index">
+        <router-link :to="'detailFilms/' + item.id">
           <img :src="item.cover.origin" alt="">
           <div class="nowBottom">
             <div class="filmsLeft">
               <p class="filmname">{{ item.name }}</p>
             </div>
-            <div class="filmGrade">{{ item.grade }}</div>
+            <div class="filmGrade">{{ new Date(item.premiereAt).getMonth()+1 +'月' + new Date(item.premiereAt).getDate() + '日上映'}}</div>
           </div>
         </router-link>
       </li>
@@ -48,9 +48,6 @@ export default {
 }
 </script>
 <style scoped>
-  .main{
-    background: #EBEBEB;
-  }
   .nowFilms {
     padding: .17rem;
     padding-bottom: 0;
@@ -79,6 +76,7 @@ export default {
   }
   .nowFilms li .nowBottom .filmGrade{
     color: #f78360;
-    font-size: .2rem;
+    font-size: .12rem;
+    margin-right: .1rem;
   }
 </style>

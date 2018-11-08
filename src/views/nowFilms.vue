@@ -1,11 +1,9 @@
 <template>
   <div>
     <ul class="nowFilms">
-       <!-- <router-link :to="{ name: 'play', params: { name: item.id }, query: { name: '张三', age: 18} }">{{ item.name }}</router-link> -->
       <li v-for="(item,index) in nowFilms"
         :key="index">
-        <!-- <router-link to="{ name: 'detailFilms', params: { id: item.id }"> -->
-        <router-link :to="'detailFilms/' + item.id">
+        <router-link :to="{ name: 'detailFilms', params: { id: item.id }}">
           <img :src="item.cover.origin" alt="">
           <div class="nowBottom">
             <div class="filmsLeft">
@@ -54,9 +52,6 @@ export default {
 }
 </script>
 <style scoped>
-  .main{
-    background: #EBEBEB;
-  }
   .nowFilms {
     padding: .17rem;
     padding-bottom: 0;

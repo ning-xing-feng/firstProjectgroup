@@ -1,24 +1,24 @@
 <template>
   <div id="app">
-    <div class="mz-header">
+    <div class="z-header">
+      <div class="mz-header">
       <div class="header-left" @click="defaultNav = !defaultNav">
         <a class="listIcon">三</a>
-        <a class="mtitle">{{ mtitle }}</a>
+        <a class="mtitle" :mtitle="mztitle">{{ mztitle }}</a>
       </div>
       <div class="header-right" @click="defaultNav = false">
         <a class="address">深圳</a>
         <router-link to="/mine" class="mine">我的</router-link>
       </div>
     </div>
+    </div>
     <div class="content-mask" v-show="defaultNav" @click="defaultNav = false"></div>
     <transition>
       <div class="mz-nav" v-show="defaultNav">
         <ul class="navList">
-          <li><router-link to="/index">首页</router-link><i>></i></li>
-          <li><router-link to="/films">影片</router-link><i>></i></li>
-          <li><router-link to="/movies">影院</router-link><i>></i></li>
-          <li><router-link to="/mine">我的</router-link><i>></i></li>
-          <li><router-link to="/outCard">卖座卡</router-link><i>></i></li>
+          <li v-for="(item,index) in navList" :key="index" @click="defaultNav = false">
+            <router-link :to="item.router">{{ item.name }}<i>></i></router-link>
+          </li>
         </ul>
       </div>
     </transition>
@@ -27,24 +27,41 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
-      defaultNav: false
+      defaultNav: false,
+      navList: [
+        {
+          name: '首页',
+          router: '/index'
+        },
+        {
+          name: '影片',
+          router: '/films'
+        },
+        {
+          name: '影院',
+          router: '/movies'
+        },
+        {
+          name: '我的',
+          router: '/mine'
+        },
+        {
+          name: '卖座卡',
+          router: '/outCard'
+        },
+      ],
+      mztitle: '卖座电影'
     };
   },
-  props: {
-    mtitle: {
-      type: String,
-      default: "卖座电影"
-    }
-  },
-  methods: {
-    getNavList () {
-      // const api_proxy = 'https://bird.ioliu.cn/v1/?url=';
-    }
-  }
+  // props: {
+  //   mtitle: {
+  //     type: String,
+  //     // default: "卖座电影"
+  //   }
+  // }
 };
 </script>
 
@@ -53,6 +70,9 @@ export default {
   height: 100%;
   width: 100%;
   position: relative;
+}
+.z-header{
+  height: .5rem;
 }
 .mz-header {
   display: flex;
@@ -121,8 +141,7 @@ export default {
   box-shadow: 0 -1px 1px #363636;
 }
 .navList li {
-  display: flex;
-  justify-content: space-between;
+
   padding: 0 0.16rem;
   border-bottom: 1px dotted #333;
   align-items: center;
@@ -130,6 +149,8 @@ export default {
 .navList li a {
   line-height: 0.5rem;
   color: #999;
+  display: flex;
+  justify-content: space-between;
 }
 </style>
 
@@ -139,11 +160,11 @@ export default {
 }
 
 .v-enter-active {
-  transition: transform 1s;
+  transition: transform 0.5s;
 }
 
 .v-leave-active {
-  transition: transform 1s;
+  transition: transform 0.5s;
 }
 
 .v-leave-to {

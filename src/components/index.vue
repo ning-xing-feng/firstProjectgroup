@@ -3,11 +3,11 @@
     <!-- <img src="@/assets/banner.jpg" alt="" class="banner"> -->
     <banner class="banner"></banner>
     <nowFilms></nowFilms>
-    <div class="moreNowFilms">更多热映电影</div>
+    <router-link :to="{ name: 'films'}"  class="moreNowFilms" tag="div">更多电影即将上映</router-link>
     <div class="line"></div>
     <div class="upcomingWord">即将上映</div>
     <upcommingFilms></upcommingFilms>
-    <div class="moreNowFilms">更多电影即将上映</div>
+    <router-link :to="{ name: 'films'}"  class="moreNowFilms" tag="div">更多电影即将上映</router-link>
   </div>
 </template>
 
@@ -28,10 +28,12 @@ export default {
 </script>
 
 <style scoped>
+  .main {
+    background: #EBEBEB;
+    padding-bottom: .3rem;
+  }
   .main .banner {
     width: 100%;
-    margin-top: .5rem;
-    background: #EBEBEB;
   }
   .main .moreNowFilms{
     width: 1.6rem;
@@ -42,6 +44,7 @@ export default {
     border: 1px solid #aaa;
     color: #616161;
     border-radius: .15rem;
+    font-size: .12rem;
   }
   .main .line {
     border-top: 1px solid #a8a8a8;
