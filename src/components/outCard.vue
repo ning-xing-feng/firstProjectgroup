@@ -10,26 +10,25 @@
       </div>
       <div class="content_form">
         <div class="content_form_One" v-if="curTab=='outCard'">
-          <p>
+          <div>
             <label>卡号：</label><input type="text" placeholder="请输入卡号">
             <div class="content_line"></div>
-          </p>
-          <p><label>密码：</label><input type="text" placeholder="请输入密码">
-          <div class="content_line"></div>
-          </p>
+          </div>
+          <div><label>密码：</label><input type="text" placeholder="请输入密码">
+             <div class="content_line"></div>
+          </div>
         </div>
         <div class="content_from_Two" v-else-if="curTab=='elcCard'">
-           <p>
+           <div>
             <label>卡号：</label><input type="text" placeholder="请输入卡号">
             <div class="content_line"></div>
-          </p>
+           </div>
         </div>
       </div>
       <div class="btn">查询</div>
   </div>
 </template>
 <script>
-
 export default {
   data() {
     return {
@@ -45,15 +44,14 @@ export default {
         }
       ]
     };
-  },
-
+  }
 };
 </script>
 <style>
 .current {
-    border-bottom: 3px solid #fe8233;
-    z-index: 10;
-    color: #fe8233
+  border-bottom: 3px solid #fe8233;
+  z-index: 10;
+  color: #fe8233;
 }
 .top_header {
   width: 100%;
