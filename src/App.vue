@@ -1,23 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!-- <Mine></Mine> -->
+    <!-- <out-card></out-card> -->
+
     <router-view/>
   </div>
 </template>
 
 <script>
+// import  Mine from './views/mine.vue';
+// import outCard from './views/outCard.vue';
 export default {
-  name: 'App'
+  name: 'App',
+  // components:{
+  //   // Mine,
+  //   // outCard
+  // }
 }
 </script>
-
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import '../static/css/layout.css';
+@import '../static/css/font/iconfont.css';
 </style>

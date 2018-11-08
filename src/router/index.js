@@ -7,6 +7,7 @@ import films from '../components/films.vue'
 import mine from '../components/mine.vue'
 import movies from '../components/movies.vue'
 import outCard from '../components/outCard.vue'
+import city from '@/components/city.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,9 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+      // components:{
+      //   city:city
+      // }
     },
     {
       path:'/index',
@@ -37,6 +41,10 @@ export default new Router({
     {
       path:'/outCard',
       component:outCard
+    },
+    {
+      path:'/city',
+      component:city
     }
   ]
 })
