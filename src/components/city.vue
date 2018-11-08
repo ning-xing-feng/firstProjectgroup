@@ -7,7 +7,7 @@
   <div class="city_list">
     <ul class="city_list_top">
       <li class="cities">GPS定位你所在的城市</li>
-      <li>深圳</li>
+      <li>{{ city }}</li>
       <li class="cities">热门城市</li>
       <li class="delCites">
         <span>北京</span>
@@ -19,51 +19,99 @@
     </ul>
     <ul class="words">
       <li v-for="(item,index) in words"
-      :key="index">{{item}}</li>
+      :key="index"
+      @click="returnTop(item)">{{item}}</li>
     </ul>
   </div>
+  <!-- 城市的按字母分类 -->
+  <div index-city-list>
+    <div class="data-reactid" v-for="(item,index) in wordsTwo"
+    :key="index" >
+      <div class="city-index-title" :id="item">{{item}}</div>
+      <div>
+      <div class="city-index-detail" >
+        <div class="city-index-detailEvery" v-for="(item,cities) in allArrTwo[index]"
+      :key="cities">{{item.name}}</div>
+      </div>
+      </div>
+    </div>
+  </div>
+
   </div>
 </template>
 <script>
-
-
-import axiox from 'axios';
+import axiox from "axios";
+import cookies from 'vue-cookies'
 export default {
-  data(){
-    return{
-      words:['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
-      everyArr:[],//每一字母所开头的城市
-      allArr:[],//所有的以每一个字母开头的城市的集合
-  }
+  data() {
+    return {
+      words: [ "A","B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"
+      ],
+      wordsTwo: [], //去空的字母
+      everyArr: [], //每一字母所开头的城市
+      allArr: [], //所有的以每一个字母开头的城市的集合
+      allArrTwo: [], //去空的数
+      city:''
+    };
   },
-methods:{
-    getContent(){
-      const api_proxy = 'https://bird.ioliu.cn/v1/?url=';
-      axiox.get(api_proxy+'https://m.maizuo.com/v4/api/city?__t=1541556779061')
-      .then(result=>{
-        var res=result.data.data.cities;
-        // console.log(res);
-        // console.log(res[0].pinyin.charAt(0));
-        for(var i=0;i<this.words.length;i++){//字母
-          for(var j=0;j<res.length;j++){//data数据
-            if(this.words[i]==res[j].pinyin.charAt(0)){//字母匹配
+  methods: {
+    getContent() {
+      const api_proxy = "https://bird.ioliu.cn/v1/?url=";
+      axiox
+        .get(api_proxy + "https://m.maizuo.com/v4/api/city?__t=1541556779061")
+        .then(result => {
+          var res = result.data.data.cities;
+          for (var i = 0; i < this.words.length; i++) {
+            //字母
+            for (var j = 0; j < res.length; j++) {
+              //data数据
+              if (this.words[i] == res[j].pinyin.charAt(0)) {
+                //字母匹配
                 this.everyArr.push(res[j]);
+              }
+            }
+            this.allArr.push(this.everyArr);
+            this.everyArr = [];
+          }
+          for (var i = 0; i < this.allArr.length; i++) {
+            if (!this.allArr[i].length == 0) {
+              this.allArrTwo.push(this.allArr[i]);
+              this.wordsTwo.push(this.allArr[i][0].pinyin.charAt(0));
             }
           }
-            this.allArr.push(this.everyArr);
-            this.everyArr=[];
-        }
-        console.log(this.allArr);
-      })
+          console.log(this.wordsTwo);
+          console.log(this.allArrTwo);
+        });
+    },
+    // 获取城市定位
+    getCityPosittion() {
+      const api_proxy = "https://bird.ioliu.cn/v1/?url=";
+      axiox
+        .get(
+          api_proxy +
+            "https://apis.map.qq.com/ws/location/v1/ip?ip=113.92.93.53&key=TKUBZ-D24AF-GJ4JY-JDVM2-IBYKK-KEBCU"
+        )
+        .then(res => {
+          this.city=res.data.result.ad_info.city;
+          //将城市信息保存早cookie中
+          var cityName={cityName:this.city};
+          cookies.set('cityName',cityName);
+          console.log(res.data.result.ad_info.city);
+        });
+    },
+    //实现锚点
+    returnTop(index) {
+      document.querySelector(`#${index}`).scrollIntoView();
     }
   },
-  mounted(){
+  mounted() {
     this.getContent();
+    this.getCityPosittion();
   }
-}
+};
 </script>
 <style>
-.all{
+.all {
   width: 100%;
   overflow: hidden;
 }
@@ -78,51 +126,78 @@ methods:{
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0 .2rem;
-  line-height: .5rem;
-  color: #ccc
+  padding: 0 0.2rem;
+  line-height: 0.5rem;
+  color: #ccc;
 }
-.city_list{
-  margin-top: .5rem;
-}
-.city_list_top li{
-  height: .47rem;
-  line-height: .47rem;
+
+.city_list_top li {
+  height: 0.47rem;
+  line-height: 0.47rem;
   padding-left: 15px;
   font-size: 14px;
   display: flex;
   justify-content: space-between;
-
 }
-.cities{
+.cities {
   background-color: #ebebeb;
 }
-.delCites{
+.delCites {
   width: 100%;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #cccccc;
-  padding: 0 .2rem;
+  padding: 0 0.2rem;
   box-sizing: border-box;
 }
-.delCites span{
+.delCites span {
   display: block;
   width: 25%;
-  text-align: center
+  text-align: center;
 }
-.words{
+.words {
   display: flex;
   flex-wrap: wrap;
   border-bottom: 1px solid #cccccc;
 }
-.words li{
+.words li {
   width: 25%;
   text-align: center;
-  height: .47rem;
-  line-height: .47rem;
+  height: 0.47rem;
+  line-height: 0.47rem;
   border-bottom: 1px solid #cccccc;
-  font-size: .16rem;
+  font-size: 0.16rem;
+}
 
-
+/* 城市列表 */
+.data-reactid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.city-index-title {
+  width: 100%;
+  padding-left: 15px;
+  font-size: 14px;
+  line-height: 40px;
+  background-color: #ebebeb;
+  margin-top: -1px;
+}
+.city-index-detail {
+  display: flex;
+  width: 3.75rem;
+  background-color: #fff;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.city-index-detail .city-index-detailEvery {
+  width: 25%;
+  font-size: 16px;
+  line-height: 46px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  color: #838383;
+  border-bottom: #ebebeb 1px solid;
 }
 </style>

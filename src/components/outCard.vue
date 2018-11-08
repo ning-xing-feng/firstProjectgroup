@@ -9,16 +9,17 @@
       </div>
       <div class="content_form">
         <div class="content_form_One" v-if="curTab=='outCard'">
-          <div>
+          <div class="Every">
             <label>卡号：</label><input type="text" placeholder="请输入卡号">
             <div class="content_line"></div>
           </div>
-          <div><label>密码：</label><input type="text" placeholder="请输入密码">
+          <div class="Every">
+            <label>密码：</label><input type="text" placeholder="请输入密码">
              <div class="content_line"></div>
           </div>
         </div>
         <div class="content_from_Two" v-else-if="curTab=='elcCard'">
-           <div>
+           <div class="Every">
             <label>卡号：</label><input type="text" placeholder="请输入卡号">
             <div class="content_line"></div>
            </div>
@@ -28,6 +29,7 @@
   </div>
 </template>
 <script>
+
 export default {
   data() {
     return {
@@ -43,7 +45,7 @@ export default {
         }
       ]
     };
-  }
+  },
 };
 </script>
 <style>
@@ -61,9 +63,7 @@ export default {
   position: fixed;
   top: 0;
 }
-.content_list {
-  margin-top: 0.5rem;
-}
+
 .content_list ul {
   width: 100%;
   background-color: #fff;
@@ -88,12 +88,12 @@ export default {
   margin-top: 0.3rem;
   padding: 0 0.32rem;
 }
-.content_form p {
+.content_form .Every {
   margin-top: 0.3rem;
   font-size: 0.15rem;
   line-height: 0.34rem;
 }
-.content_form p input {
+.Every input {
   border: none;
   outline: none;
 }

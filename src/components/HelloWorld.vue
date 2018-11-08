@@ -1,16 +1,4 @@
 <template>
-    <nav>
-      <router-link to='mine'>我的</router-link>
-      <router-link to ='outCard'>卡片</router-link>
-      <div class="hello">
-    <header class="header"></header>
-    <h1>{{msg}}</h1>
-      <router-link to="films">影院</router-link>
-      <router-link to="index">主页</router-link>
-      <router-link to="mine">在线</router-link>
-    <router-view/>
-    </div>
-    </nav>
 
 
 </template>

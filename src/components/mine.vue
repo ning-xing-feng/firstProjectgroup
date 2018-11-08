@@ -1,20 +1,12 @@
 <template>
  <div class="all">
-    <!-- <h4>我的页面</h4> -->
-    <div class="top_header">
-      <!-- c城市 -->
-      <router-link to='/city'>选择城市</router-link>
-      <router-link to='/city'>深圳D</router-link>
-
-    </div>
-    <!-- 头像部分 -->
     <div class="top_headerImg">
     <div class="top_headerImg_left">
       <img src="https://pic.maizuo.com/usr/default/maizuomoren66.jpg">
     </div>
     <div class="top_headerImg_right">
-      <p class="phoneUser">手机用户</p>
-      <p class="ID">ID:<span>08534</span></p>
+      <p class="phoneUser">手机用户:{{userNickName}}</p>
+      <p class="ID">ID:<span>{{userPhone}}</span></p>
       <p class="back"><a href="##">退出</a></p>
     </div>
     </div>
@@ -64,7 +56,14 @@
 
 <script>
 import axiox from 'axios';
+import cookies from 'vue-cookies';
 export default {
+  data(){
+    return{
+      userNickName:'',//昵称
+      userPhone:'',//手机号
+    }
+  },
  methods:{
     getContent(){
       const api_proxy = 'https://bird.ioliu.cn/v1/?url=';
@@ -72,14 +71,24 @@ export default {
       .then(result=>{
         console.log(result);
       })
+    },
+     getUser(){
+       this.userNickName=cookies.get('userInfo').nickname;
+       this.userPhone=cookies.get('userInfo').phone;
+      console.log(cookies.get('userInfo'));
     }
   },
   mounted(){
     this.getContent();
+    this.getUser();//获取cookie值
   }
 };
 </script>
 <style>
+.all{
+  width: 100%;
+  overflow: hidden;
+}
 .top_header {
   width: 100%;
   height: 0.5rem;
@@ -96,7 +105,8 @@ export default {
   color: #ccc
 }
 .top_headerImg {
-  /* margin-top: .5rem; */
+  width: 100%;
+  overflow: hidden;
   height: 1.52rem;
   background-color: #303030;
   color: #fff;
@@ -116,6 +126,7 @@ export default {
   float: left;
 }
 .phoneUser {
+  width: 2rem;
   font-size: 0.14rem;
 }
 .back a {
@@ -147,7 +158,6 @@ export default {
 .content_list .list li span {
   margin-top: 0.14rem;
   line-height: 0.35rem;
-  /* vertical-align: inherit; */
   display: block;
   float: left;
 }
@@ -178,8 +188,12 @@ export default {
 }
 
 .middle_list .list{
+  width:100%;
   height: .6rem;
-  line-height: .6rem;
+  /* line-height: .6rem; */
+  align-items: center;
+  padding-right: .3rem;
+  padding-top: .15rem;
 }
 .middle_list .list{
   margin:0 .12rem;
