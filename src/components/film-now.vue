@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .films-form li{
     list-style: none;
     width: 90%;

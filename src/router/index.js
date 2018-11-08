@@ -53,15 +53,15 @@ export default new Router({
           component:FilmSoon
         },
         {
-          path:'detailFilms/ :id',
-          name:'detailFilms',
-          component:detailFilms
-        },
-        {
           path:'',
           component:FilmNow
         }
       ]
+    },
+    {
+      path:'detailFilms/ :id',
+      name:'detailFilms',
+      component:detailFilms
     },
     {
       path:'/mine',
