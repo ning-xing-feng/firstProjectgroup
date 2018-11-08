@@ -96,7 +96,7 @@ export default {
   color: #ccc
 }
 .top_headerImg {
-  margin-top: .5rem;
+  /* margin-top: .5rem; */
   height: 1.52rem;
   background-color: #303030;
   color: #fff;
@@ -147,7 +147,7 @@ export default {
 .content_list .list li span {
   margin-top: 0.14rem;
   line-height: 0.35rem;
-  vertical-align: inherit;
+  /* vertical-align: inherit; */
   display: block;
   float: left;
 }
@@ -156,7 +156,7 @@ export default {
   display: inline;
   color: #7bcdcc;
   margin-right: 0.1rem;
-  float: left;
+  /* float: left; */
 }
 .icon-youjiantou{
   line-height: .6rem;

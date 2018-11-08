@@ -69,7 +69,7 @@ export default {
   width: 100%;
   position: relative;
 }
-.z-header{
+.z-header {
   height: .5rem;
 }
 .mz-header {

@@ -1,6 +1,5 @@
 <template>
   <div>
-      <div class="top_header"></div>
       <div class="content_list">
         <ul>
            <li class="content_listTwo" v-for="(item,index) in tabs"

@@ -1,6 +1,5 @@
 <template>
   <div class="main">
-    <!-- <img src="@/assets/banner.jpg" alt="" class="banner"> -->
     <banner class="banner"></banner>
     <nowFilms></nowFilms>
     <router-link :to="{ name: 'films'}"  class="moreNowFilms" tag="div">更多电影即将上映</router-link>

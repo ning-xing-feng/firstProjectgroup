@@ -16,7 +16,7 @@ import detailFilms from '@/views/detailFilms.vue'
 
 import register from '@/components/register.vue'
 import login from '@/components/login.vue'
-import detailFilms from '../components/detailFilms'
+
 
 Vue.use(Router)
 

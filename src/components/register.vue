@@ -1,17 +1,5 @@
 <template>
   <div>
-    <header>
-      <h1>
-        <div class="nav">
-          三
-        </div>
-        <div class="login">注册</div>
-      </h1>
-      <div class="h-right">
-        <div class="city">城市</div>
-        <div class="user">用户</div>
-      </div>
-    </header>
     <section class="login-view">
       <form>
         <div class="form-grop">

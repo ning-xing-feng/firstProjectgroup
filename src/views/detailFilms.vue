@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <img :src="detailFilms.cover.origin" alt="">
+    <img :src="origin" alt="">
     <h2>影片简介</h2>
     <div class="filmInfo">
       <div class="director">导&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;演：<span>{{ detailFilms.director }}</span></div>
@@ -21,7 +21,8 @@ export default {
   data () {
     return {
       detailFilms : [],
-      mztitle: ''
+      mztitle: '',
+      origin:''
     }
   },
   methods: {
@@ -35,6 +36,7 @@ export default {
           if(res.msg === 'ok') {
             this.detailFilms=res.data.film;
             this.mztitle=this.detailFilms.name;
+            this.origin=this.detailFilms.cover.origin;
             // console.log(this.mztitle);
             // console.log(this.detailFilms)
           }
