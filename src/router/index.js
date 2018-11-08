@@ -9,7 +9,7 @@ import FilmNow from '../components/film-now.vue'
 import FilmSoon from '../components/film-soon.vue'
 import movies from '../components/movies.vue'
 import outCard from '../components/outCard.vue'
-import filmDetails from '../components/film-details'
+import detailFilms from '../components/detailFilms'
 
 Vue.use(Router)
 
@@ -33,16 +33,19 @@ export default new Router({
         {
           //正在上影
           path:'film-now',
+          name:'FilmNow',
           component:FilmNow
         },
         {
           //即将上影
           path:'film-soon',
+          name: 'FilmSoon',
           component:FilmSoon
         },
         {
-          path:'filmDetails/ :id',
-          component:filmDetails
+          path:'detailFilms/ :id',
+          name:'detailFilms',
+          component:detailFilms
         },
         {
           path:'',

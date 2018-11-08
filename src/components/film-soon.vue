@@ -3,12 +3,12 @@
        <ul class="films-form">
            <li v-for='(item,index) in jock'  
            :key='index'>
-           <router-link :to="/filmDetails/ + item.id" class="film_info">
+           <router-link :to="/detailFilms/ + item.id" class="film_info">
                <img :src="item.poster.origin" alt="">
                <div class="info_right">
                   <p> <span class='filmName'>{{ item.name}}</span> <span class="gra"> 》 </span> </p>
                   <p> <span class="filmInfo">{{ item.intro}}</span></p>
-                  <p><span class="filmCount">{{ item.watchCount}} 家影院上映</span> <span class="watchCount">{{ item.cinemaCount}} 买过</span></p>  
+                  <p><span class="premiereAt">{{ item.premiereAt}} </span> <span class="premiereAt">首映</span>  </p>  
                 </div>
            </router-link>
            </li>
@@ -29,6 +29,20 @@ export default {
           .then(result => {
             var res=result.data.data.films;
             console.log(result)
+
+            for(var i=0;i<res.length;i++){
+                var oDate = new Date(res[i].premiereAt)
+                var oYear = oDate.getFullYear(),
+                    oMonth = oDate.getMonth()+1,
+                    oDay = oDate.getDate(),
+                    oWeek=oDate.getDay(),
+                    oHour = oDate.getHours(),
+                    oMin = oDate.getMinutes(),
+                    oSen = oDate.getSeconds(),
+                    oTime =oMonth+'月'+oDay+'日 星期'+oWeek
+                    res[i].premiereAt=oTime
+            }
+            console.log(oTime)
             this.jock=res;
           })
     }
@@ -82,13 +96,14 @@ p{
     color: #8e8e8e;
     font-size: 12px;
 }
-.filmCount,.watchCount{
+.premiereAt{
     float: left;
     margin-right: 20px;
     line-height: 24px;
-    color: #8e8e8e;
+    color: #ffb375;
     font-size: 12px;
 }
+
 
 </style>
 

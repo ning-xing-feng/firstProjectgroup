@@ -3,17 +3,14 @@
        <ul class="films-form">
            <li v-for='(item,index) in jock'  
            :key='index'>
-           <div class="film_info">
+           <router-link :to="/detailFilms/ + item.id" class="film_info">
                <img :src="item.poster.origin" alt="">
                <div class="info_right">
                   <p> <span class='filmName'>{{ item.name}}</span> <span class="grade">{{ item.grade}}  </span> </p>
                   <p> <span class="filmInfo">{{ item.intro}}</span></p>
                   <p><span class="filmCount">{{ item.watchCount}} 家影院上映</span> <span class="watchCount">{{ item.cinemaCount}} 买过</span></p>  
                 </div>
-           </div>
-           
-           
-           
+           </router-link>
            </li>
        </ul>
     </div>
@@ -37,6 +34,7 @@ export default {
     }
 }
 </script>
+
 <style>
 .films-form li{
     list-style: none;
