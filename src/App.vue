@@ -3,12 +3,12 @@
     <div class="z-header">
       <div class="mz-header">
       <div class="header-left" @click="defaultNav = !defaultNav">
-        <a class="listIcon">三</a>
+        <a class="listIcon fa fa-bars"></a>
         <a class="mtitle" :mtitle="mztitle">{{ mztitle }}</a>
       </div>
       <div class="header-right" @click="defaultNav = false">
-        <a class="address">深圳</a>
-        <router-link to="/mine" class="mine">我的</router-link>
+        <router-link to="/city" class="address">深圳<i class="fa fa-angle-down"></i></router-link>
+        <router-link to="/mine" class="mine fa fa-user-o"></router-link>
       </div>
     </div>
     </div>
@@ -16,8 +16,10 @@
     <transition>
       <div class="mz-nav" v-show="defaultNav">
         <ul class="navList">
-          <li v-for="(item,index) in navList" :key="index" @click="defaultNav = false">
-            <router-link :to="item.router">{{ item.name }}<i>></i></router-link>
+          <li v-for="(item,index) in navList"
+            :key="index"
+            @click="defaultNav = false; mztitle= item.mztitle;">
+            <router-link :to="item.router">{{ item.name }}<i class="fa fa-angle-right"></i></router-link>
           </li>
         </ul>
       </div>
@@ -36,29 +38,33 @@ export default {
       navList: [
         {
           name: '首页',
-          router: '/index'
+          router: '/index',
+          mztitle: '卖座电影'
         },
         {
           name: '影片',
-          router: '/films'
+          router: '/films',
+          mztitle: '卖座电影'
         },
         {
           name: '影院',
-          router: '/movies'
+          router: '/movies',
+          mztitle: '全部影院'
         },
         {
           name: '我的',
-          router: '/mine'
+          router: '/mine',
+          mztitle: '我的'
         },
         {
           name: '卖座卡',
-          router: '/outCard'
+          router: '/outCard',
+          mztitle: '查询/绑定/激活卖座卡'
         },
       ],
       mztitle: '卖座电影'
     };
-  },
-
+  }
 }
 </script>
 <style scoped>
@@ -93,6 +99,7 @@ export default {
   width: 0.5rem;
   height: 0.5rem;
   text-align: center;
+  line-height: .5rem;
   border-right: 1px solid #222;
   box-shadow: 1px 0 1px #363636;
 }
@@ -102,14 +109,20 @@ export default {
 }
 .mz-header .header-right {
   display: flex;
+  align-items: center;
 }
 .mz-header .header-right .address {
   padding: 0 0.06rem;
+  color: #999;
+}
+.mz-header .header-right .fa-angle-down{
+  padding-left: .04rem;
 }
 .mz-header .header-right .mine {
   width: 0.5rem;
   text-align: center;
   color: #999;
+  font-size: .16rem;
 }
 .content-mask {
   height: 100%;
@@ -128,7 +141,7 @@ export default {
   position: fixed;
   left: 0;
   top: 0.5rem;
-  z-index: 2;
+  z-index: 102;
 }
 .navList {
   height: 100%;
@@ -139,10 +152,13 @@ export default {
   box-shadow: 0 -1px 1px #363636;
 }
 .navList li {
-
   padding: 0 0.16rem;
   border-bottom: 1px dotted #333;
   align-items: center;
+}
+.fa-angle-right{
+  line-height: .5rem;
+  font-size: .18rem;
 }
 .navList li a {
   line-height: 0.5rem;
