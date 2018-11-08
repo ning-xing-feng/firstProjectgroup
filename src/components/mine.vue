@@ -7,7 +7,7 @@
     <div class="top_headerImg_right">
       <p class="phoneUser">手机用户:{{userNickName}}</p>
       <p class="ID">ID:<span>{{userPhone}}</span></p>
-      <p class="back"><a href="##">退出</a></p>
+      <p class="back" @click="backIndex()"><a href="##">退出</a></p>
     </div>
     </div>
     <!-- 列表部分 -->
@@ -81,6 +81,11 @@ export default {
   mounted(){
     this.getContent();
     this.getUser();//获取cookie值
+  },
+  //点击退出时清除cookie值，退出到登录页面
+  backIndex(){
+    this.$router.push('/index');
+    console.log(1);
   }
 };
 </script>
