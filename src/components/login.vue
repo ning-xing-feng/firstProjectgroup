@@ -11,6 +11,7 @@
           <div class="input-bg"></div>
         </div>
         <button class="submit" @click="sub">登录</button>
+        <router-link to="/register" class="toRegister">没有账号？先去注册</router-link>
       </form>
     </section>
   </div>
@@ -123,5 +124,13 @@ header h1 {
   border: 0;
   outline: none;
   border-radius: 0.36rem;
+}
+.toRegister {
+  display: block;
+  width: 1.5rem;
+  color: blue;
+  margin: 0 auto;
+  text-decoration: none;
+  text-align: center;
 }
 </style>
