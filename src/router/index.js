@@ -49,24 +49,22 @@ export default new Router({
       component:outCard
     },
     {
-<<<<<<< HEAD
       path:'/city',
       component:city
-
     },
     // 改动
     {
       path:'/detailFilms/:id',
       name: 'detailFilms',
       component: detailFilms
-=======
+    },
+    {
       path: '/register',
       component:register
     },
     {
       path: '/login',
       component:login
->>>>>>> wzw
     }
   ]
 })

@@ -1,11 +1,5 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <!-- <Mine></Mine> -->
-    <!-- <out-card></out-card> -->
-
-=======
     <div class="z-header">
       <div class="mz-header">
       <div class="header-left" @click="defaultNav = !defaultNav">
@@ -28,31 +22,15 @@
         </ul>
       </div>
     </transition>
->>>>>>> lhx
-=======
->>>>>>> wzw
     <router-view/>
   </div>
 </template>
 
 <script>
-// import  Mine from './views/mine.vue';
-// import outCard from './views/outCard.vue';
+
 export default {
-<<<<<<< HEAD
   name: 'App',
-  // components:{
-  //   // Mine,
-  //   // outCard
-  // }
-}
-</script>
-<style>
-<<<<<<< HEAD
-@import '../static/css/layout.css';
-@import '../static/css/font/iconfont.css';
-=======
-  data() {
+   data() {
     return {
       defaultNav: false,
       navList: [
@@ -80,16 +58,12 @@ export default {
       mztitle: '卖座电影'
     };
   },
-  // props: {
-  //   mtitle: {
-  //     type: String,
-  //     // default: "卖座电影"
-  //   }
-  // }
-};
-</script>
 
+}
+</script>
 <style scoped>
+@import '../static/css/layout.css';
+@import '../static/css/font/iconfont.css';
 #app {
   height: 100%;
   width: 100%;
@@ -176,14 +150,8 @@ export default {
   display: flex;
   justify-content: space-between;
 }
->>>>>>> lhx
-=======
-</style>
-<style>
-@import '../static/css/reset.css';
->>>>>>> wzw
-</style>
 
+</style>
 <style scoped>
 .v-enter {
   transform: translateX(-100%);
