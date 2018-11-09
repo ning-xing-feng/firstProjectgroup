@@ -1,20 +1,23 @@
 <template>
 <div class="cinema_list">
-    <ul id="regin_header" >
-        <li v-for="(item,index) in cinemas"
-        :key='index'  >
-        <p class="region" @click="open()"> {{item}}</p>
-            <router-link to="/movies"
-            tag="div"
+    <ul  >
+        <li id="regin_header" @click="open()"
+        v-for="(item,index) in cinemas"
+        :key='index' >
+        <p class="region"> {{item}}</p>
+         <div
             v-for="(it,intr) in cinemaList"
             :key="intr"
             v-if="item===cinemaList[intr].district.name"
-            class="region_cinemas"
-            v-show="isShow">
-            <p class="cinema-title"> {{it.name}}</p>
-            <p class="cinema-title-address">{{it.address}}</p>
-            <p class="away">距离未知</p>
+            id="div"
+            class="cinemas_titie_list">
+            <router-link :to="{ name: 'detailMovie', params: { id: it.id }}"
+            tag="div">
+                <div class="cinema-title"> {{it.name}} <i class="icon iconfont icon-zuowei"></i><i class="icon iconfont icon-tong"></i> </div>
+                <div class="cinema-title-address">{{it.address}}</div>
+                <div class="away">距离未知</div>
             </router-link>
+        </div>
         </li>
     </ul>
 
@@ -29,49 +32,41 @@ const api = 'https://bird.ioliu.cn/v1/?url='
 export default {
     data () {
         return{
-            cinemaList:[],
-            isShow:false
+                cinemaList:[],
+                isShow:-1
         }
     },
     created () {
-        console.log(cookies.get('cityNews'));
         var cityId=cookies.get('cityNews').cityId;
-        console.log(cityId)
          axios.get(api+'https://m.maizuo.com/v4/api/cinema',{
              params:{
                  cityId:cityId
              }
          })
          .then(result=>{
-             console.log(result);
              var res=result.data.data.cinemas;
              this.cinemaList=res;
-             console.log(this.cinemaList)
          })
     },
     methods:{
         open (e){
-            var e =e ||event
-            var target=e.target;
-            this.isShow = !this.isShow;
-            if (target.nodeName.toLowerCase() === 'p'){
-                console.log(target.lastChild)
 
-                console.log(this.isShow);
+            var li=document.getElementById('regin_header')
+            var p=document.getElementsByClassName('region')
+            var div =document.getElementById('div')
 
-                // parentNode.className.search(childName)
-            }
-
-            // var ul=document.getElementById('regin_header')
-            // ul.onclick = function(e){
-            //     var e =e ||event
-            //     var target=e.target
-            //     //console.log(target.nodeName)
-            //     if (target.nodeName.toLowerCase() == 'li') {
-            //         console.log(2)
-            //     }
-            //  }
+                var e =e ||event
+                var target=e.target
+                //console.log(target.nodeName)
+                if (target.getAttribute('class')==='region') {
+                    if(target.parentNode.children[1].className=="cinemas_titie_list"){
+                        target.parentNode.children[1].setAttribute('class','cinemas_list')
+                    }else if(target.parentNode.children[1].className=="cinemas_list"){
+                        target.parentNode.children[1].setAttribute('class','cinemas_titie_list')
+                    }
+                }
         }
+
     },
     computed : {
           cinemas (){
@@ -82,14 +77,7 @@ export default {
                         cinemaArr.push(cinemainfo[i].district.name)
                   }
             }
-             console.log(cinemaArr)
              return cinemaArr
-            // cinemainfo.forEach(function(item,index,array){
-            //     if(cinemainfo.indexOf(item.district.name,index+1)==-1){
-            //         cinemaArr.push(item.district.name)
-            //     }
-            // })
-            // return cinemaArr
           }
     }
 }
@@ -110,15 +98,21 @@ export default {
     background: #e1e1e1;
     border-bottom: 0.01rem solid #ffffff;
 }
-.region_cinemas{
-    background: #ffffff;
+.cinemas_titie_list{
+    display: none;
+}
+ .cinemas_list{
+    display: block !important;
     padding: 0.1rem 0 0.12rem 0.16rem;
     border-bottom: 0.01rem solid #e1e1e1;
+    background: #ffffff;
 }
 .cinema-title{
+    height: 0.3rem;
     line-height: 0.3rem;
     width: 50%;
-    font-size: 0.16rem;
+    color: #333;
+    font-size: 0.15rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap
@@ -131,6 +125,22 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap
+}
+.icon-zuowei{
+    color: #ec5323;
+    font-size: 0.25rem;
+    margin-top:0.05rem;
+    line-height: 0.3rem;
+    position: relative;
+    top: 0.008rem;
+}
+.icon-tong{
+    color: #2196f3;
+    font-size: 0.3rem;
+    margin-top:0.05rem;
+    line-height: 0.3rem;
+    position: relative;
+    top: 0.02rem;
 }
 </style>
 
