@@ -44,7 +44,7 @@ Vue.use(Router)
         },
         {
           path:'',
-          component:FilmNow
+          redirect: 'film-now'
         }
       ]
     },
