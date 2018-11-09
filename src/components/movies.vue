@@ -1,9 +1,9 @@
 <template>
 <div class="cinema_list">
-    <ul id="regin_header" @click="open()">
+    <ul id="regin_header" >
         <li v-for="(item,index) in cinemas"
-        :key='index' >
-        <p class="region"  > {{item}}</p>
+        :key='index'  >
+        <p class="region" @click="open()"> {{item}}</p>
             <router-link to="/movies"
             tag="div"
             v-for="(it,intr) in cinemaList"
@@ -30,7 +30,7 @@ export default {
     data () {
         return{
             cinemaList:[],
-            isShow:true
+            isShow:false
         }
     },
     created () {
@@ -52,10 +52,14 @@ export default {
     methods:{
         open (e){
             var e =e ||event
-            var target=e.target
+            var target=e.target;
+            this.isShow = !this.isShow;
             if (target.nodeName.toLowerCase() === 'p'){
-                this.isShow = !this.isShow;
-                console.log(this.isShow)
+                console.log(target.lastChild)
+
+                console.log(this.isShow);
+
+                // parentNode.className.search(childName)
             }
 
             // var ul=document.getElementById('regin_header')

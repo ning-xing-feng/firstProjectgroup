@@ -142,6 +142,9 @@ export default {
       cookies.set("cityNews", cityName);
     }
   },
+  updated:function(){
+      console.log('我会执行的');
+  },
   mounted() {
     this.getContent();
     this.getCityPosittion();
