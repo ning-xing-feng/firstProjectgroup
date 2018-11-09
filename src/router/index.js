@@ -20,18 +20,13 @@ Vue.use(Router)
  const router =  new Router({
   routes: [
     {
-      path: '',
-      name: 'index',
-      component: index
-    },
-    {
       path:'/index',
       name:'index',
       component:index
     },
     {
       path:'/films',
-      name: 'films',
+      // name: 'films',
       component:films,
       //film的子路由
       children:[
@@ -49,15 +44,9 @@ Vue.use(Router)
         },
         {
           path:'',
-          name:'FilmNow',
           component:FilmNow
         }
       ]
-    },
-    {
-      path:'detailFilms/ :id',
-      name:'detailFilms',
-      component:detailFilms
     },
     {
       path:'/mine',
@@ -94,7 +83,17 @@ Vue.use(Router)
       path: '/login',
       name: 'login',
       component: login
-    }
+    },
+    {
+      //正在上影
+      path:'/detailMovie/:id',
+      name:'detailMovie',
+      component:detailMovie
+    },
+    {
+      path: '',
+      redirect: '/index'
+    },
   ]
 })
 router.beforeEach(function (to, from, next) {

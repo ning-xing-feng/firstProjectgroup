@@ -60,10 +60,10 @@ export default {
           name: '卖座卡',
           router: '/outCard',
           mztitle: '查询/绑定/激活卖座卡'
-        },
+        }
       ],
       mztitle: '卖座电影',
-      cityName: ''
+      cityName: '深圳'
     };
   },
   created(){
