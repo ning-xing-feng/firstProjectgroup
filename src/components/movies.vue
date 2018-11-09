@@ -4,11 +4,11 @@
         <li v-for="(item,index) in cinemas"
         :key='index' >
         <p class="region"  > {{item}}</p>
-            <router-link to="/movies" 
+            <router-link to="/movies"
             tag="div"
-            v-for="(it,intr) in cinemaList" 
-            :key="intr" 
-            v-if="item===cinemaList[intr].district.name" 
+            v-for="(it,intr) in cinemaList"
+            :key="intr"
+            v-if="item===cinemaList[intr].district.name"
             class="region_cinemas"
             v-show="isShow">
             <p class="cinema-title"> {{it.name}}</p>
@@ -17,13 +17,13 @@
             </router-link>
         </li>
     </ul>
-   
+
 </div>
 
 </template>
 
 <script>
-
+import cookies from 'vue-cookies'
 import axios from 'axios'
 const api = 'https://bird.ioliu.cn/v1/?url='
 export default {
@@ -34,8 +34,16 @@ export default {
         }
     },
     created () {
-         axios.get(api+'https://m.maizuo.com/v4/api/cinema')
+        console.log(cookies.get('cityNews'));
+        var cityId=cookies.get('cityNews').cityId;
+        console.log(cityId)
+         axios.get(api+'https://m.maizuo.com/v4/api/cinema',{
+             params:{
+                 cityId:cityId
+             }
+         })
          .then(result=>{
+             console.log(result);
              var res=result.data.data.cinemas;
              this.cinemaList=res;
              console.log(this.cinemaList)
@@ -49,7 +57,7 @@ export default {
                 this.isShow = !this.isShow;
                 console.log(this.isShow)
             }
-             
+
             // var ul=document.getElementById('regin_header')
             // ul.onclick = function(e){
             //     var e =e ||event
@@ -67,7 +75,7 @@ export default {
             var cinemaArr=[];
             for(var i =0;i<cinemainfo.length;i++){
                  if(cinemaArr.indexOf(cinemainfo[i].district.name)== -1){
-                        cinemaArr.push(cinemainfo[i].district.name) 
+                        cinemaArr.push(cinemainfo[i].district.name)
                   }
             }
              console.log(cinemaArr)
@@ -79,7 +87,7 @@ export default {
             // })
             // return cinemaArr
           }
-    }      
+    }
 }
 </script>
 
@@ -88,7 +96,7 @@ export default {
 <style>
 .cinema_list{
     height: 100%;
-    background: #ebebeb; 
+    background: #ebebeb;
 }
 .region{
     /* height: .5rem; */
