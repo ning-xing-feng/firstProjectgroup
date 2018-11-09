@@ -15,7 +15,7 @@
        </ul>
     </div>
 </template>
-<script>
+<script scoped>
 import axios from 'axios'
 const api = 'https://bird.ioliu.cn/v1/?url='
 export default {

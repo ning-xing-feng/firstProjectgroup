@@ -53,6 +53,11 @@ export default new Router({
       ]
     },
     {
+      path:'detailFilms/ :id',
+      name:'detailFilms',
+      component:detailFilms
+    },
+    {
       path:'/mine',
       name: 'mine',
       component:mine

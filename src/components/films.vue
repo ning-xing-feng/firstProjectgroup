@@ -13,13 +13,7 @@ export default {
 
 };
 </script>
-<style>
-.title-nav{
-  color: #999;
-  width: 50px;
-  height: 50px;
-  border-right: 1px solid #222;
-}
+<style scoped>
 nav{
   width: 90%;
   display: flex;
@@ -27,6 +21,10 @@ nav{
   align-self:center;
   border-bottom: 1px #fe6e00 solid;
   margin: 50px  auto 0;
+  text-align: center;
+}
+.z-header {
+  height: 0;
 }
 a{
   flex: 1;
