@@ -5,12 +5,12 @@
         v-for="(item,index) in cinemas"
         :key='index' >
         <p class="region"> {{item}}</p>
-         <div
+         <div  class="cinemas_titie_list">
+             <div
             v-for="(it,intr) in cinemaList"
             :key="intr"
             v-if="item===cinemaList[intr].district.name"
-            id="div"
-            class="cinemas_titie_list">
+            id="div">
             <router-link :to="{ name: 'detailMovie', params: { id: it.id }}"
             tag="div">
                 <div class="cinema-title"> {{it.name}} <i class="icon iconfont icon-zuowei"></i><i class="icon iconfont icon-tong"></i> </div>
@@ -18,6 +18,7 @@
                 <div class="away">距离未知</div>
             </router-link>
         </div>
+         </div>
         </li>
     </ul>
 
@@ -108,7 +109,6 @@ export default {
     background: #ffffff;
 }
 .cinema-title{
-    height: 0.3rem;
     line-height: 0.3rem;
     width: 50%;
     color: #333;

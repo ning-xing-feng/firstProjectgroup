@@ -20,7 +20,7 @@ nav{
   justify-content: space-around;
   align-self:center;
   border-bottom: 1px #fe6e00 solid;
-  margin: 50px  auto 0;
+  margin: 0 auto ;
   text-align: center;
 }
 .z-header {

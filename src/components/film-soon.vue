@@ -1,14 +1,14 @@
 <template>
     <div class="film-list">
        <ul class="films-form">
-           <li v-for='(item,index) in jock'  
+           <li v-for='(item,index) in jock'
            :key='index'>
            <router-link :to="/detailFilms/ + item.id" class="film_info">
                <img :src="item.poster.origin" alt="">
                <div class="info_right">
                   <p> <span class='filmName'>{{ item.name}}</span> <span class="gra"> 》 </span> </p>
                   <p> <span class="filmInfo">{{ item.intro}}</span></p>
-                  <p><span class="premiereAt">{{ item.premiereAt}} </span> <span class="premiereAt">首映</span>  </p>  
+                  <p><span class="premiereAt">{{ item.premiereAt}} </span> <span class="premiereAt">首映</span>  </p>
                 </div>
            </router-link>
            </li>
@@ -48,7 +48,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .films-form li{
     list-style: none;
     width: 90%;
@@ -62,7 +62,7 @@ export default {
 
     padding: 20px 0;
     display: flex;
-    
+
 }
 .info_right{
     width: 100%;
@@ -81,7 +81,7 @@ p{
     float: left;
     color: #000;
     width: 80%;
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
