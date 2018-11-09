@@ -67,7 +67,7 @@ export default {
     };
   },
   created(){
-    this.cityName = cookies.get('cityName').cityName;
+    this.cityName = cookies.get('cityNews').cityName;
   }
 }
 </script>
