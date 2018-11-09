@@ -140,6 +140,7 @@ export default {
       console.log(item);
       var cityName = { cityName: item.name, cityId: item.id };
       cookies.set("cityNews", cityName);
+      this.$router.push("/index");
     }
   },
   updated:function(){
