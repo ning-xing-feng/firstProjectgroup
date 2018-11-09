@@ -7,7 +7,7 @@
         <a class="mtitle" :mtitle="mztitle">{{ mztitle }}</a>
       </div>
       <div class="header-right" @click="defaultNav = false">
-        <router-link to="/city" class="address">深圳<i class="fa fa-angle-down"></i></router-link>
+        <router-link to="/city" class="address">{{ cityName }}<i class="fa fa-angle-down"></i></router-link>
         <router-link to="/mine" class="mine fa fa-user-o"></router-link>
       </div>
     </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-
+import cookies from 'vue-cookies'
 export default {
   name: 'App',
    data() {
@@ -62,8 +62,12 @@ export default {
           mztitle: '查询/绑定/激活卖座卡'
         },
       ],
-      mztitle: '卖座电影'
+      mztitle: '卖座电影',
+      cityName: ''
     };
+  },
+  created(){
+    this.cityName = cookies.get('cityName').cityName;
   }
 }
 </script>
