@@ -12,11 +12,12 @@ import city from '@/components/city.vue'
 import detailFilms from '@/views/detailFilms.vue'
 import register from '@/components/register.vue'
 import login from '@/components/login.vue'
-
+import detailMovie from '@/views/detailMovie.vue'
+import cookies from 'vue-cookies'
 
 Vue.use(Router)
 
-export default new Router({
+ const router =  new Router({
   routes: [
     {
       path: '',
@@ -30,6 +31,7 @@ export default new Router({
     },
     {
       path:'/films',
+      name: 'films',
       component:films,
       //film的子路由
       children:[
@@ -60,6 +62,7 @@ export default new Router({
     {
       path:'/mine',
       name: 'mine',
+      meta: { needLogin: true },
       component:mine
     },
     {
@@ -94,3 +97,18 @@ export default new Router({
     }
   ]
 })
+router.beforeEach(function (to, from, next) {
+  /* console.log(to)
+  console.log(document.cookie.username) */
+  if (to.meta.needLogin) {
+    if (cookies.get('userInfo')) {
+      next()
+    } else {
+      next('/login')
+    }
+  } else {
+    next()
+  }
+})
+
+export default router;

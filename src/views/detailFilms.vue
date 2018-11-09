@@ -58,7 +58,7 @@ export default {
     font-size: .12rem;
     background: #ebebeb;
     color: #333;
-    padding-bottom: .2rem;
+    height: 100%;
   }
   .main img{
     width: 100%;
@@ -96,7 +96,10 @@ export default {
     line-height: .36rem;
     color: #FFF;
     font-size: .14rem;
-    margin: 0 auto;
+    position: fixed;
+    bottom: .2rem;
+    text-decoration: none;
+    margin-left: 1.09rem;
   }
 </style>
 

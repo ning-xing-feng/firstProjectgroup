@@ -2,11 +2,11 @@
   <div class="main">
     <banner class="banner"></banner>
     <nowFilms></nowFilms>
-    <router-link :to="{ name: 'films'}"  class="moreNowFilms" tag="div">更多电影即将上映</router-link>
+    <router-link to="/films/film-now"  class="moreNowFilms" tag="div">更多电影即将上映</router-link>
     <div class="line"></div>
     <div class="upcomingWord">即将上映</div>
     <upcommingFilms></upcommingFilms>
-    <router-link :to="{ name: 'films'}"  class="moreNowFilms" tag="div">更多电影即将上映</router-link>
+    <router-link to="/films/film-soon"  class="moreNowFilms" tag="div">更多电影即将上映</router-link>
   </div>
 </template>
 
