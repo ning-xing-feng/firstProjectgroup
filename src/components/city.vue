@@ -7,13 +7,18 @@
   <div class="city_list">
     <ul class="city_list_top">
       <li class="cities">GPS定位你所在的城市</li>
-      <li>{{ city }}</li>
+      <li class="GPSCity">{{ city }}</li>
       <li class="cities">热门城市</li>
       <li class="delCites">
-        <span>北京</span>
-        <span>上海</span>
-        <span>广州</span>
-        <span>深圳</span>
+          <span v-for="(item,index) in NoticeCites"
+          :key="index"
+          @click="getNoticeCities(item)">{{ item.name}}</span>
+
+
+<!--         <router-link to='/index' tag='span'>北京</router-link>
+        <router-link to='/index' tag='span'>上海</router-link>
+        <router-link to='/index' tag='span'>广州</router-link>
+        <router-link to='/index' tag='span'>深圳</router-link> -->
       </li>
       <li class="cities">按字母排序</li>
     </ul>
@@ -42,18 +47,35 @@
 </template>
 <script>
 import axiox from "axios";
-import cookies from 'vue-cookies'
+import cookies from "vue-cookies";
 export default {
   data() {
     return {
-      words: [ "A","B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"
-      ],
+      words: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
       wordsTwo: [], //去空的字母
       everyArr: [], //每一字母所开头的城市
       allArr: [], //所有的以每一个字母开头的城市的集合
       allArrTwo: [], //去空的数
-      city:'',
-      cityname:''
+      city: "",
+      cityname: "",
+      NoticeCites: [
+        {
+          name: "北京",
+          id: 12
+        },
+        {
+          name: "上海",
+          id: 11
+        },
+        {
+          name: "广州",
+          id: 13
+        },
+        {
+          name: "深圳",
+          id: 10
+        }
+      ]
     };
   },
   methods: {
@@ -94,23 +116,30 @@ export default {
             "https://apis.map.qq.com/ws/location/v1/ip?ip=113.92.93.53&key=TKUBZ-D24AF-GJ4JY-JDVM2-IBYKK-KEBCU"
         )
         .then(res => {
-          this.city=res.data.result.ad_info.city;
+          this.city = res.data.result.ad_info.city;
           //将城市信息保存早cookie中
-          var cityName={cityName:this.city};
+          var cityName = { cityName: this.city };
           console.log(res.data.result.ad_info.city);
         });
     },
     //获取城市id 信息
-    getCities(item){
-      cookies.set('cityName',cityName);
-      var cityName={cityName:item.name,cityId:item.id}
-      this.cityname=item.name;
-      cookies.set('cityNews',cityName)
+    getCities(item) {
+      cookies.set("cityName", cityName);
+      var cityName = { cityName: item.name, cityId: item.id };
+      this.cityname = item.name;
+      cookies.set("cityNews", cityName);
       console.log(cityName);
+      this.$router.push("/index");
     },
     //实现锚点
     returnTop(index) {
       document.querySelector(`#${index}`).scrollIntoView(true);
+    },
+    //热门城市点击跳转，信息保存到cookie中
+    getNoticeCities(item) {
+      console.log(item);
+      var cityName = { cityName: item.name, cityId: item.id };
+      cookies.set("cityNews", cityName);
     }
   },
   mounted() {
@@ -120,6 +149,9 @@ export default {
 };
 </script>
 <style>
+.GPSCity {
+  color: #e29421;
+}
 .all {
   width: 100%;
   overflow: hidden;

@@ -14,15 +14,15 @@
     <div class="content_list">
       <ul class="list">
         <li>
-          <div class="list_left"><i class="iconfont icon-shenqingfapiao"></i><span>影票订单</span></div>
+          <div class="list_left"><i class="fa fa-file-movie-o"></i><span>影票订单</span></div>
           <div class="list_right"><span>0</span>张   ></div>
         </li>
           <li>
-            <div class="list_left"><i class="iconfont icon-shenqingfapiao"></i><span>影票待付订单</span></div>
+            <div class="list_left"><i class="fa fa-file-movie-o"></i><span>影票待付订单</span></div>
             <div class="list_right"><span>0</span>张  ></div>
           </li>
           <li>
-            <div class="list_left"><i class="iconfont icon-shenqingfapiao"></i><span>商城订单</span></div>
+            <div class="list_left"><i class="fa fa-file-movie-o"></i><span>商城订单</span></div>
             <div class="list_right"><span>0</span>张   ></div>
           </li>
       </ul>
@@ -30,15 +30,15 @@
     <div class="content_middle_list">
        <ul class="middle_list">
         <li class="list">
-          <div class="list_left"><i class="iconfont icon-shenqingfapiao"></i><span>我的现金券</span></div>
+          <div class="list_left"><i class="fa fa-file-movie-o"></i><span>我的现金券</span></div>
           <div class="list_right"><span>0</span>张   ></div>
         </li>
          <li class="list">
-          <div class="list_left"><i class="iconfont icon-shenqingfapiao"></i><span>我的现金券</span></div>
+          <div class="list_left"><i class="fa fa-file-movie-o"></i><span>我的现金券</span></div>
           <div class="list_right"><span>0</span>张   ></div>
         </li>
          <li class="list">
-          <div class="list_left"><i class="iconfont icon-shenqingfapiao"></i><span>我的现金券</span></div>
+          <div class="list_left"><i class="fa fa-file-movie-o"></i><span>我的现金券</span></div>
           <div class="list_right"><span>0</span>张   ></div>
         </li>
       </ul>
@@ -46,7 +46,7 @@
     <div class="content_list">
       <ul class="list">
         <li>
-          <div class="list_left"><i class="iconfont icon-shenqingfapiao"></i><span>设置</span></div>
+          <div class="list_left"><i class="fa fa-file-movie-o"></i><span>设置</span></div>
         </li>
       </ul>
     </div>
@@ -79,34 +79,56 @@ export default {
       console.log(cookies.get("userInfo"));
     },
     //点击退出，清除cookie，调转到首页
-    getCookie(name ) {
-      var arr = document.cookie.match(
-        new RegExp("(^| )" + name + "=([^;]*)(;|$)")
-      );
-      if (arr != null) return unescape(arr[2]);
-      return null;
-    },
-    delCookie(name ) {
-      var exp = new Date();
-      exp.setTime(exp.getTime() - 1);
-      var cval = getCookie(name);
-      if (cval != null)
-        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
-    },
     backIndex() {
       this.$router.push("/index");
-      //清除cookie的值
-      this.delCookie('userInfo');
+      //点击退出时清除cookie值，退出到登录页面
+      this.delCookie("userInfo");
+    },
+    getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == " ") c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+      }
+      return "";
+    },
+    delCookie(name) {
+      var exp = new Date();
+      exp.setTime(exp.getTime() - 1);
+      var cval = this.getCookie(name);
+      if (cval != null)
+        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
     }
   },
   mounted() {
     this.getContent();
     this.getUser(); //获取cookie值s
-  },
-  //点击退出时清除cookie值，退出到登录页面
+  }
 };
 </script>
 <style>
+.fa{
+margin-right: .1rem;
+  color: #fff;
+  width: .25rem;
+  height: .25rem;
+  border-radius: 50%;
+  text-align: center;
+  line-height: .25rem;
+}
+.fa-file-movie-o{
+
+  background: #7bcdcc;
+
+
+}
+.fa fa-money{
+  color: black;
+  background: #7bcdcc;
+
+}
 .all {
   width: 100%;
   overflow: hidden;
@@ -180,8 +202,6 @@ export default {
 .content_list .list li span {
   margin-top: 0.14rem;
   line-height: 0.35rem;
-  display: block;
-  float: left;
 }
 .icon-shenqingfapiao {
   font-size: 0.24rem;

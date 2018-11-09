@@ -29,8 +29,8 @@ const api = 'https://bird.ioliu.cn/v1/?url='
 export default {
     data () {
         return{
-                cinemaList:[],
-                isShow:true
+            cinemaList:[],
+            isShow:true
         }
     },
     created () {
