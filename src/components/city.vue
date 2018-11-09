@@ -31,7 +31,8 @@
       <div>
       <div class="city-index-detail" >
         <div class="city-index-detailEvery" v-for="(item,cities) in allArrTwo[index]"
-      :key="cities">{{item.name}}</div>
+      :key="cities"
+      @click="getCities(item)">{{item.name}}</div>
       </div>
       </div>
     </div>
@@ -51,7 +52,8 @@ export default {
       everyArr: [], //每一字母所开头的城市
       allArr: [], //所有的以每一个字母开头的城市的集合
       allArrTwo: [], //去空的数
-      city:''
+      city:'',
+      cityname:''
     };
   },
   methods: {
@@ -95,13 +97,20 @@ export default {
           this.city=res.data.result.ad_info.city;
           //将城市信息保存早cookie中
           var cityName={cityName:this.city};
-          cookies.set('cityName',cityName);
           console.log(res.data.result.ad_info.city);
         });
     },
+    //获取城市id 信息
+    getCities(item){
+      cookies.set('cityName',cityName);
+      var cityName={cityName:item.name,cityId:item.id}
+      this.cityname=item.name;
+      cookies.set('cityNews',cityName)
+      console.log(cityName);
+    },
     //实现锚点
     returnTop(index) {
-      document.querySelector(`#${index}`).scrollIntoView();
+      document.querySelector(`#${index}`).scrollIntoView(true);
     }
   },
   mounted() {

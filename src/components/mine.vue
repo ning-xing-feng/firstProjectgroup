@@ -7,7 +7,7 @@
     <div class="top_headerImg_right">
       <p class="phoneUser">手机用户:{{userNickName}}</p>
       <p class="ID">ID:<span>{{userPhone}}</span></p>
-      <p class="back"><a href="##">退出</a></p>
+      <p class="back" @click="backIndex()"><a href="#">退出</a></p>
     </div>
     </div>
     <!-- 列表部分 -->
@@ -55,37 +55,58 @@
 </template>
 
 <script>
-import axiox from 'axios';
-import cookies from 'vue-cookies';
+import axiox from "axios";
+import cookies from "vue-cookies";
 export default {
-  data(){
-    return{
-      userNickName:'',//昵称
-      userPhone:'',//手机号
-    }
+  data() {
+    return {
+      userNickName: "", //昵称
+      userPhone: "" //手机号
+    };
   },
- methods:{
-    getContent(){
-      const api_proxy = 'https://bird.ioliu.cn/v1/?url=';
-      axiox.get(api_proxy+'https://m.maizuo.com/v4/api/me?__t=1541554315948')
-      .then(result=>{
-        console.log(result);
-      })
+  methods: {
+    getContent() {
+      const api_proxy = "https://bird.ioliu.cn/v1/?url=";
+      axiox
+        .get(api_proxy + "https://m.maizuo.com/v4/api/me?__t=1541554315948")
+        .then(result => {
+          console.log(result);
+        });
     },
-     getUser(){
-       this.userNickName=cookies.get('userInfo').nickname;
-       this.userPhone=cookies.get('userInfo').phone;
-      console.log(cookies.get('userInfo'));
+    getUser() {
+      this.userNickName = cookies.get("userInfo").nickname;
+      this.userPhone = cookies.get("userInfo").phone;
+      console.log(cookies.get("userInfo"));
+    },
+    //点击退出，清除cookie，调转到首页
+    getCookie(name ) {
+      var arr = document.cookie.match(
+        new RegExp("(^| )" + name + "=([^;]*)(;|$)")
+      );
+      if (arr != null) return unescape(arr[2]);
+      return null;
+    },
+    delCookie(name ) {
+      var exp = new Date();
+      exp.setTime(exp.getTime() - 1);
+      var cval = getCookie(name);
+      if (cval != null)
+        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+    },
+    backIndex() {
+      this.$router.push("/index");
+      //清除cookie的值
+      this.delCookie('userInfo');
     }
   },
-  mounted(){
+  mounted() {
     this.getContent();
-    this.getUser();//获取cookie值
+    this.getUser(); //获取cookie值s
   }
 };
 </script>
 <style>
-.all{
+.all {
   width: 100%;
   overflow: hidden;
 }
@@ -100,9 +121,9 @@ export default {
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0 .2rem;
-  line-height: .5rem;
-  color: #ccc
+  padding: 0 0.2rem;
+  line-height: 0.5rem;
+  color: #ccc;
 }
 .top_headerImg {
   width: 100%;
@@ -168,11 +189,11 @@ export default {
   margin-right: 0.1rem;
   /* float: left; */
 }
-.icon-youjiantou{
-  line-height: .6rem;
+.icon-youjiantou {
+  line-height: 0.6rem;
   display: inline-block;
-  margin-top: .05rem;
-  font-size: .2rem;
+  margin-top: 0.05rem;
+  font-size: 0.2rem;
 }
 .list_left {
   float: left;
@@ -180,24 +201,24 @@ export default {
 .list_right {
   height: 100%;
   float: right;
-  margin-right: .15rem;
+  margin-right: 0.15rem;
 }
 .list_right span {
   color: #ffbd80;
   margin-right: 0.03rem;
 }
 
-.middle_list .list{
-  width:100%;
-  height: .6rem;
+.middle_list .list {
+  width: 100%;
+  height: 0.6rem;
   /* line-height: .6rem; */
   align-items: center;
-  padding-right: .3rem;
-  padding-top: .15rem;
+  padding-right: 0.3rem;
+  padding-top: 0.15rem;
 }
-.middle_list .list{
-  margin:0 .12rem;
-  border-bottom: 1px solid #F0F0F0;
+.middle_list .list {
+  margin: 0 0.12rem;
+  border-bottom: 1px solid #f0f0f0;
 }
 </style>
 
