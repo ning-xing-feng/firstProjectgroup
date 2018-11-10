@@ -4,7 +4,7 @@
       <div class="mz-header">
       <div class="header-left" @click="defaultNav = !defaultNav">
         <a class="listIcon fa fa-bars"></a>
-        <a class="mtitle" :mtitle="mztitle">{{ mztitle }}</a>
+        <a class="mtitle">{{ mztitle }}</a>
       </div>
       <div class="header-right" @click="defaultNav = false">
         <router-link to="/city" class="address">{{ cityName }}<i class="fa fa-angle-down"></i></router-link>
@@ -18,7 +18,7 @@
         <ul class="navList">
           <li v-for="(item,index) in navList"
             :key="index"
-            @click="defaultNav = false; mztitle= item.mztitle;">
+            @click="defaultNav = false;">
             <router-link :to="item.router">{{ item.name }}<i class="fa fa-angle-right"></i></router-link>
           </li>
         </ul>
@@ -30,8 +30,20 @@
 
 <script>
 import cookies from 'vue-cookies'
+import {mapState} from 'vuex'
 export default {
   name: 'App',
+    computed: {
+    ...mapState([
+      'hone',
+      'file',
+      'cinema',
+      'center',
+      'card',
+      'login',
+      'register'
+    ])
+  },
    data() {
     return {
       defaultNav: false,
@@ -66,9 +78,40 @@ export default {
       cityName: '深圳'
     };
   },
+  methods:{
+    getTitle () {
+      var tit = window.location.hash
+      // console.log(tit)
+      console.log(tit.slice(2));
+      if (tit.slice(2) === '') {
+        tit = this.hone
+      } else if (tit.slice(2) === 'index'){
+        tit = this.hone
+      } else if (tit.slice(2) === 'movies') {
+        tit = this.cinema
+        // console.log(tit);
+      } else if (tit.slice(2) === 'outCard') {
+        tit = this.card
+      } else if (tit.slice(2) === 'mine') {
+        tit = this.center
+      } else if (tit.slice(2) === 'register') {
+        tit = this.register
+      } else if (tit.slice(2) === 'login') {
+        tit = this.login
+      } else {
+        tit = this.file
+      }
+      this.mztitle = tit
+    }
+  },
   created(){
     this.cityName = cookies.get('cityNews').cityName;
-  }
+    this.getTitle ();
+  },
+  updated () {
+    this.cityName = cookies.get('cityNews').cityName;
+    this.getTitle ();
+  },
 }
 </script>
 <style scoped>
